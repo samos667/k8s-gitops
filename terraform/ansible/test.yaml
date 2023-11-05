@@ -1,0 +1,3 @@
+- name: "Prepare nodes"
+  hosts: nodes
+  tasks:

@@ -1,0 +1,8 @@
+[masters]
+k3s1 IP=172.16.66.99
+
+[workers]
+
+[nodes:children]
+masters
+workers
