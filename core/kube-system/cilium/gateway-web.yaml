@@ -42,6 +42,7 @@ metadata:
 spec:
   parentRefs:
     - name: prod-web
+      sectionName: prod-http-gw
   hostnames:
     - "${CLUSTER_DOMAIN}"
     - "hubble.${CLUSTER_DOMAIN}"
