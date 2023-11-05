@@ -1,0 +1,6 @@
+kind: Kustomization
+namespace: monitoring
+resources:
+  - vmsingle
+  - vmagent
+  - vmservicescrape

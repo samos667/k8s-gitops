@@ -2,3 +2,4 @@ kind: Kustomization
 resources:
   - kube-system
   - cert-manager
+  # - monitoring
