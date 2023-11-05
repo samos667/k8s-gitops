@@ -3,5 +3,6 @@ kind: Kustomization
 namespace: flux-system
 resources:
   - cilium.yaml
+  - jetstack-charts.yaml
   - local-path-provisioner.yaml
   - bjw-s.yaml
