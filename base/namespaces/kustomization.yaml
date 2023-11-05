@@ -4,3 +4,4 @@ resources:
   - cert-manager.yaml
   - local-path-provisioner.yaml
   - monitoring.yaml
+  - flagger.yaml
