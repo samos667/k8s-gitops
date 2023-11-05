@@ -1,0 +1,6 @@
+kind: Kustomization
+namespace: kube-system
+resources:
+  - node-local-dns.yaml
+  - bgp.yaml
+  - lb-pool.yaml

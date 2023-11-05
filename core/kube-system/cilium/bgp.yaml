@@ -1,9 +1,9 @@
 apiVersion: "cilium.io/v2alpha1"
 kind: CiliumBGPPeeringPolicy
 metadata:
-  name: 01-bgp-peering-policy
-spec: # CiliumBGPPeeringPolicySpec
-  virtualRouters: # []CiliumBGPVirtualRouter
+  name: bgp-peering-policy
+spec:
+  virtualRouters:
     - localASN: 64512
       exportPodCIDR: true
       serviceSelector:
