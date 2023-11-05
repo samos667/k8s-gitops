@@ -4,5 +4,5 @@ resources:
   - ../settings.yaml
   - ../secrets.yaml
   - settings.yaml
-  - secrets
+  # - secrets
   - secrets.yaml
