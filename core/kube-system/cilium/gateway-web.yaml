@@ -5,23 +5,19 @@ metadata:
   namespace: kube-system
 spec:
   gatewayClassName: cilium
-  listeners:
-    - name: prod-http-gw
-      protocol: HTTP
-      port: 80
-      allowedRoutes:
-        namespaces:
-          from: Same
-    - name: prod-https-gw
-      protocol: HTTPS
-      port: 443
-      hostname: "*.${CLUSTER_DOMAIN}"
-      tls:
-        certificateRefs:
-          - kind: Secret
-            group: ""
-            name: letsencrypt-wildcard-cert
-            namespace: cert-manager
+listeners:
+  - name: prod-http-gw
+    protocol: HTTP
+    port: 80
+  - name: prod-https-gw
+    protocol: HTTPS
+    port: 443
+    hostname: "*.${CLUSTER_DOMAIN}"
+    tls:
+      certificateRefs:
+        - kind: Secret
+          name: letsencrypt-wildcard-cert
+          namespace: cert-manager
 ---
 apiVersion: gateway.networking.k8s.io/v1beta1
 kind: HTTPRoute
