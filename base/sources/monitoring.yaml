@@ -1,0 +1,38 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
+metadata:
+  name: victoria-metrics
+  namespace: flux-system
+spec:
+  interval: 1h
+  url: https://victoriametrics.github.io/helm-charts/
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: HelmRepository
+metadata:
+  name: kube-state-metrics
+  namespace: flux-system
+spec:
+  type: "oci"
+  interval: 1h
+  url: oci://registry-1.docker.io/bitnamicharts/
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: HelmRepository
+metadata:
+  name: node-exporter
+  namespace: flux-system
+spec:
+  type: "oci"
+  interval: 1h
+  url: oci://registry-1.docker.io/bitnamicharts/
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: HelmRepository
+metadata:
+  name: grafana-operator
+  namespace: flux-system
+spec:
+  type: "oci"
+  interval: 1h
+  url: oci://ghcr.io/grafana-operator/helm-charts/
