@@ -36,7 +36,7 @@ resource "proxmox_virtual_environment_vm" "k3s" {
   }
 
   memory {
-    dedicated = 4096
+    dedicated = 16384
   }
 
   agent {
