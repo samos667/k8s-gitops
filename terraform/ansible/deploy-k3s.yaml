@@ -153,7 +153,7 @@
         {{ KUBECTL_BIN }} create -n {{ FLUX_NAMESPACE }} secret generic ssh-github
         --save-config --dry-run=client
         --from-literal=identity="{{ FLUX_KEY }}"
-        --from-literal=known_hosts="{{ FLUX_PUB_KEY }}"
+        --from-literal=known_hosts="{{ KNOWN_HOSTS }}"
         -o yaml
         | {{ KUBECTL_BIN }} apply -f -
 

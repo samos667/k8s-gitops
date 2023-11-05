@@ -23,5 +23,5 @@ spec:
   prune: true
   sourceRef:
     kind: GitRepository
-    name: flux-system
+    name: gitops-github-repo
   #validation: client ?
