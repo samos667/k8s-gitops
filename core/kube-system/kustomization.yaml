@@ -2,3 +2,4 @@ kind: Kustomization
 namespace: kube-system
 resources:
   - cilium
+  - config-syncer.yaml
