@@ -1,4 +1,18 @@
 apiVersion: gateway.networking.k8s.io/v1beta1
+kind: ReferenceGrant
+metadata:
+  name: allow-kube-system-gateways-to-ref-secrets
+  namespace: kube-system
+spec:
+  from:
+    - group: gateway.networking.k8s.io
+      kind: Gateway
+      namespace: gateway-api-example-ns1
+  to:
+    - group: ""
+      kind: Secret
+---
+apiVersion: gateway.networking.k8s.io/v1beta1
 kind: Gateway
 metadata:
   name: prod-web
@@ -16,6 +30,7 @@ spec:
       tls:
         certificateRefs:
           - kind: Secret
+            group: ""
             name: letsencrypt-wildcard-cert
             namespace: cert-manager
 ---
