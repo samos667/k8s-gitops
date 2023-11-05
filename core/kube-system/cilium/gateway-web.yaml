@@ -29,6 +29,7 @@ spec:
       port: 443
       hostname: "*.${CLUSTER_DOMAIN}"
       tls:
+        mode: Terminate
         certificateRefs:
           - kind: Secret
             group: ""
