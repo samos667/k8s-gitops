@@ -1,4 +1,9 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: local-path-provisioner
+  name: storage-speed-data
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: storage-big-data
