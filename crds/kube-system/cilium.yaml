@@ -13,31 +13,31 @@ spec:
         kind: HelmRepository
         name: cilium
         namespace: flux-system
-    values:
-      kubeProxyReplacement: true
-      k8sServiceHost: ${K3S_IP}
-      k8sServicePort: ${K3S_PORT}
-      clusterDomain: cluster
-      hubble:
-        relay:
-          enabled: true
-        ui:
-          enabled: true
-        peeerService:
-          clusterDomain: cluster
+  values:
+    kubeProxyReplacement: true
+    k8sServiceHost: ${K3S_IP}
+    k8sServicePort: ${K3S_PORT}
+    clusterDomain: cluster
+    hubble:
+      relay:
+        enabled: true
+      ui:
+        enabled: true
+      peeerService:
+        clusterDomain: cluster
+    operator:
+      replicas: 1
+    localRedirectPolicy: true
+    bgpControlPlane:
+      enabled: true
+    gatewayAPI:
+      enabled: true
+    envoy:
+      enabled: true
+    bpf:
+      masquerade: true
+    ipam:
+      mode: cluster-pool
       operator:
-        replicas: 1
-      localRedirectPolicy: true
-      bgpControlPlane:
-        enabled: true
-      gatewayAPI:
-        enabled: true
-      envoy:
-        enabled: true
-      bpf:
-        masquerade: true
-      ipam:
-        mode: cluster-pool
-        operator:
-          clusterPoolIPv4PodCIDRList: ${POD_CIDR}
-          clusterPoolIPv4MaskSize: ${MASK_SIZE_PER_NODE}
+        clusterPoolIPv4PodCIDRList: ${POD_CIDR}
+        clusterPoolIPv4MaskSize: ${MASK_SIZE_PER_NODE}
