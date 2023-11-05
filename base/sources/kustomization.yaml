@@ -4,5 +4,6 @@ namespace: flux-system
 resources:
   - cilium.yaml
   - jetstack-charts.yaml
+  - appscode.yaml
   - local-path-provisioner.yaml
   - bjw-s.yaml
