@@ -59,7 +59,7 @@ metadata:
   namespace: kube-system
 spec:
   parentRefs:
-    - name: prod-https-gw
+    - name: prod-web
   hostnames:
     - "hubble.${CLUSTER_DOMAIN}"
   rules:
