@@ -1,4 +1,4 @@
 kind: Kustomization
-namespace: kube-system
+namespace: cert-manager
 resources:
   - hr.yaml
