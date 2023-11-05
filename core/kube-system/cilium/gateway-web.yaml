@@ -32,7 +32,7 @@ spec:
   parentRefs:
     - name: prod-http-gw
   hostnames:
-    - "${CLUSTER_NAME}"
+    - "${CLUSTER_DOMAIN}"
     - "*.${CLUSTER_DOMAIN}"
   rules:
     - filters:
