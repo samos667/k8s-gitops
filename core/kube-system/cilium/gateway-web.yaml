@@ -1,0 +1,61 @@
+apiVersion: gateway.networking.k8s.io/v1beta1
+kind: Gateway
+metadata:
+  name: prod-web
+  namespace: kube-system
+spec:
+  gatewayClassName: cilium
+  listeners:
+    - name: prod-http-gw
+      protocol: HTTP
+      port: 80
+      allowedRoutes:
+        namespaces:
+          from: Same
+    - name: prod-https-gw
+      protocol: HTTPS
+      port: 443
+      hostname: "*.${CLUSTER_DOMAIN}"
+      tls:
+        certificateRefs:
+          - kind: Secret
+            group: ""
+            name: letsencrypt-wildcard-cert
+            namespace: cert-manager
+---
+apiVersion: gateway.networking.k8s.io/v1beta1
+kind: HTTPRoute
+metadata:
+  name: http-to-https
+  namespace: kube-system
+spec:
+  parentRefs:
+    - name: prod-http-gw
+  hostnames:
+    - "${CLUSTER_NAME}"
+    - "*.${CLUSTER_DOMAIN}"
+  rules:
+    - filters:
+        - type: RequestRedirect
+          requestRedirect:
+            scheme: https
+            statusCode: 301
+---
+apiVersion: gateway.networking.k8s.io/v1beta1
+kind: HTTPRoute
+metadata:
+  name: hubble-ui
+  namespace: kube-system
+spec:
+  parentRefs:
+    - name: prod-https-gw
+  hostnames:
+    - "hubble.${CLUSTER_NAME}"
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      backendRefs:
+        - name: hubble-ui
+          port: 80
