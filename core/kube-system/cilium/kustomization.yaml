@@ -4,3 +4,4 @@ resources:
   - node-local-dns.yaml
   - bgp.yaml
   - lb-pool.yaml
+  - gateway-web.yaml
