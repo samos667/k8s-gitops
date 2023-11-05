@@ -7,7 +7,7 @@ spec:
   from:
     - group: gateway.networking.k8s.io
       kind: Gateway
-      namespace: gateway-api-example-ns1
+      namespace: kube-system
   to:
     - group: ""
       kind: Secret
