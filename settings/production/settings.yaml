@@ -6,7 +6,7 @@ metadata:
 data:
   #VALUES DIFFERENT PROD - STAGING
   CLUSTER_ENV: "production"
-  SPEED-DATA: /mnt/speed-data
-  BIG-DATA: /mnt/big-data
+  SPEED_DATA: /mnt/speed-data
+  BIG_DATA: /mnt/big-data
   POD_CIDR: "10.66.0.0/16"
   MASK_SIZE_PER_NODE: "18"
