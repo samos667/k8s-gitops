@@ -44,7 +44,7 @@ spec:
     - name: prod-web
   hostnames:
     - "${CLUSTER_DOMAIN}"
-    - "*.${CLUSTER_DOMAIN}"
+    - "hubble.${CLUSTER_DOMAIN}"
   rules:
     - filters:
         - type: RequestRedirect
