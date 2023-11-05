@@ -2,7 +2,7 @@ apiVersion: gateway.networking.k8s.io/v1beta1
 kind: ReferenceGrant
 metadata:
   name: allow-kube-system-gateways-to-ref-secrets
-  namespace: kube-system
+  namespace: cert-manager
 spec:
   from:
     - group: gateway.networking.k8s.io
