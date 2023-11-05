@@ -41,7 +41,7 @@ metadata:
   namespace: kube-system
 spec:
   parentRefs:
-    - name: prod-http-gw
+    - name: prod-web
   hostnames:
     - "${CLUSTER_DOMAIN}"
     - "*.${CLUSTER_DOMAIN}"
