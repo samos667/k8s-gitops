@@ -1,5 +1,5 @@
 kind: Kustomization
 namespace: kube-system
 resources:
-  - kube-system
-  - cert-manager
+  - ClusterIssuer.yaml
+  - Certificate.yaml

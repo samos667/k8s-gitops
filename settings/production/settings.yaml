@@ -12,3 +12,4 @@ data:
   MASK_SIZE_PER_NODE: "18"
   K3S_IP: "172.16.66.99"
   K3S_PORT: "6443"
+  ISSUER_URL: https://acme-v02.api.letsencrypt.org/directory
