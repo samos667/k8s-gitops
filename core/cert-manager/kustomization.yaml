@@ -1,5 +1,4 @@
 kind: Kustomization
-namespace: kube-system
 resources:
   - ClusterIssuer.yaml
   - Certificate.yaml
