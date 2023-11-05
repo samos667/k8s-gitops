@@ -50,7 +50,7 @@ spec:
   parentRefs:
     - name: prod-https-gw
   hostnames:
-    - "hubble.${CLUSTER_NAME}"
+    - "hubble.${CLUSTER_DOMAIN}"
   rules:
     - matches:
         - path:
