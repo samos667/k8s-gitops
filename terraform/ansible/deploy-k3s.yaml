@@ -132,7 +132,7 @@
 
     - name: Create secret with SOPS AGE key
       shell: >
-        {{ KUBECTL_BIN }} create -n {{ FLUX_NAMESPACE }} secret generic sops-age
+        {{ KUBECTL_BIN }} create -n {{ FLUX_NAMESPACE }} secret generic steropes-secrets-decrypt-sops-age
         --save-config --dry-run=client
         --from-literal=age.agekey="{{ SOPS_AGE }}"
         -o yaml
@@ -150,7 +150,7 @@
     - name: Create secret with github key
       run_once: True
       shell: >
-        {{ KUBECTL_BIN }} create -n {{ FLUX_NAMESPACE }} secret generic ssh-github
+        {{ KUBECTL_BIN }} create -n {{ FLUX_NAMESPACE }} secret generic steropes-flux-github-ssh-key
         --save-config --dry-run=client
         --from-literal=identity="{{ FLUX_KEY }}"
         --from-literal=known_hosts="{{ KNOWN_HOSTS }}"

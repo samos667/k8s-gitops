@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: flux-system
+  name: steropes-vars
+data:
+  CLUSTER_ENV: "production"
+  SPEED_DATA: /mnt/speed-data
+  BIG_DATA: /mnt/big-data
+  NETWORK_K8S_CLUSTER_CIDR: "10.0.0.0/8"
+  POD_CIDR: "10.66.0.0/16"
+  MASK_SIZE_PER_NODE: "18"
+  K3S_IP: "172.16.66.99"
+  K3S_PORT: "6443"
+  ISSUER_URL: https://acme-v02.api.letsencrypt.org/directory
