@@ -47,7 +47,7 @@
     - name: Copy k3s config
       ansible.builtin.copy:
         src: ./files/k3s-config.yaml
-        dest: /etc/rancher/config.yaml
+        dest: /etc/rancher/k3s/config.yaml
         owner: root
         group: root
         mode: "0644"
