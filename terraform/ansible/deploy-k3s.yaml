@@ -15,10 +15,47 @@
         fstype: ext4
         state: mounted
 
+    - name: Copy ZRAM script
+      ansible.builtin.copy:
+        src: ./files/zramswap.sh
+        dest: /usr/sbin/zramswap.sh
+        owner: root
+        group: root
+        mode: "0744"
+
+    - name: Copy ZRAM service
+      ansible.builtin.copy:
+        src: ./files/zramswap.service
+        dest: /etc/systemd/system/zramswap.service
+        owner: root
+        group: root
+        mode: "0644"
+
+    - name: Enable ZRAM swap
+      ansible.builtin.systemd:
+        name: zramswap
+        enabled: true
+        state: started
+
+    - name: Create rancher dir
+      ansible.builtin.file:
+        path: /etc/rancher/k3s/
+        state: directory
+        owner: root
+        group: root
+
+    - name: Copy k3s config
+      ansible.builtin.copy:
+        src: ./files/k3s-config.yaml
+        dest: /etc/rancher/config.yaml
+        owner: root
+        group: root
+        mode: "0644"
+
     - name: Deploy k3s
       run_once: True
       shell: >
-        curl -sfL https://get.k3s.io | K3S_KUBECONFIG_MODE="644" INSTALL_K3S_EXEC="server" sh -s - --flannel-backend none --disable-network-policy --disable=traefik --disable=local-storage --cluster-cidr={{ POD_CIDR }} --service-cidr={{ SERVICE_CIDR }} --disable=servicelb --disable-kube-proxy
+        curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION={{ K3S_VERSION }} INSTALL_K3S_EXEC="server" sh -s - --cluster-cidr={{ POD_CIDR }} --service-cidr={{ SERVICE_CIDR }}
 
     - name: "Put kubectl config in default place"
       #TBD: this always result in changed

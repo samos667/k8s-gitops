@@ -1,0 +1,12 @@
+write-kubeconfig-mode: "0600"
+flannel-backend: none
+disable-network-policy: true
+disable:
+  - traefik
+  - local-storage
+  - servicelb
+disable-kube-proxy: true
+kubelet-arg:
+  - feature-gates=NodeSwap=true
+  - failSwapOn=false
+  - memorySwap=swapBehavior=LimitedSwap

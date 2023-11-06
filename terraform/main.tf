@@ -32,7 +32,6 @@ resource "proxmox_virtual_environment_vm" "k3s" {
   cpu {
     cores = 6
     type  = "host"
-    flags = ["-spec-ctrl"]
   }
 
   memory {
