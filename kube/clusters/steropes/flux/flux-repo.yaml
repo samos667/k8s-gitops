@@ -44,10 +44,10 @@ spec:
     substituteFrom:
       - kind: ConfigMap
         name: steropes-vars
-        optional: false
+        optional: true
       - kind: Secret
         name: steropes-secrets
-        optional: false
+        optional: true
   patches:
     - patch: |-
         apiVersion: kustomize.toolkit.fluxcd.io/v1
