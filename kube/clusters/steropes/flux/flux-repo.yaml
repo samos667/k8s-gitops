@@ -101,7 +101,7 @@ spec:
         group: kustomize.toolkit.fluxcd.io
         version: v1
         kind: Kustomization
-        labelSelector: kustomization.flux.home.arpa/name notin (cilium, flux, kubevirt)
+        labelSelector: kustomization.flux.home.arpa/name notin (cilium, flux, kubevirt, kyverno)
 
     - patch: |
         - op: add
