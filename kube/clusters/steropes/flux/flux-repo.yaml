@@ -2,7 +2,7 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: GitRepository
 metadata:
-  name: flux-system
+  name: k8s-gitops
   namespace: flux-system
 spec:
   interval: 10m0s
@@ -34,7 +34,7 @@ spec:
   wait: false
   sourceRef:
     kind: GitRepository
-    name: flux-system
+    name: k8s-gitops
   decryption:
     provider: sops
     secretRef:
@@ -74,7 +74,7 @@ spec:
         spec:
           sourceRef:
             kind: GitRepository
-            name: flux-system
+            name: k8s-gitops
       target:
         group: kustomize.toolkit.fluxcd.io
         version: v1
