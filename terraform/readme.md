@@ -2,6 +2,6 @@
 
 ```
 terraform apply --auto-approve --var-file=vars.tfvars
-cilium status --wait
-kubectl apply -k ../cluster/production/
+cd ..
+k apply -k kube/bootstrap/flux/ && k apply -f kube/clusters/steropes/flux/flux-install.yaml && k apply -f kube/clusters/steropes/flux/flux-repo.yaml
 ```
