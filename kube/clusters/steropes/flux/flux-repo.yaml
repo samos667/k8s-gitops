@@ -29,7 +29,7 @@ metadata:
     kustomization.flux.home.arpa/helmpatches: "false"
 spec:
   interval: 5m0s
-  path: ./kube/clusters/nuclear/flux
+  path: ./kube/clusters/steropes/flux
   prune: false
   wait: false
   sourceRef:
