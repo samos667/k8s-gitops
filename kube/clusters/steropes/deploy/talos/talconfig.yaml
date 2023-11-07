@@ -1,0 +1,67 @@
+clusterName: steropes
+talosVersion: v1.5.4
+kubernetesVersion: v1.28.2
+endpoint: "https://k.${DNS_CLUSTER}:6443"
+allowSchedulingOnMasters: true
+domain: "cluster.local"
+
+cniConfig:
+  name: none
+
+clusterPodNets:
+  - "${IP_POD_CIDR_V4}"
+clusterSvcNets:
+  - "${IP_SVC_CIDR_V4}"
+
+additionalApiServerCertSans:
+  - "${IP_ENDPOINT}"
+
+additionalMachineCertSans:
+  - "${IP_ENDPOINT}"
+  - k.${DNS_CLUSTER}
+
+nodes:
+  - hostname: "cp1.${DNS_CLUSTER}"
+    ipAddress: ${IP_ENDPOINT}
+    extensions:
+      - image: ghcr.io/siderolabs/gvisor:20231214.0-v1.5.4
+    installDisk: /dev/disk/by-id/scsi-0QEMU_QEMU_HARDDISK_drive-scsi0
+    controlPlane: true
+    nodeLabels:
+      rack: placard
+      zone: fr-home-1
+    disableSearchDomain: true
+    # machineDisks:
+    #   - device: /dev/disk/by-id/scsi-0QEMU_QEMU_HARDDISK_drive-scsi1
+    #     partitions:
+    #       - mountpoint: /mnt/big-data
+    nameservers: ["${IP_GATEWAY}"]
+    networkInterfaces:
+      - interface: eth0
+        dhcp: true
+controlPlane:
+  patches:
+    - &kubeletExtraArgs |-
+      - op: add
+        path: /machine/kubelet/extraArgs
+        value:
+          feature-gates: GracefulNodeShutdown=true
+    - &machinePatch |-
+      machine:
+        time:
+          servers:
+            - time.cloudflare.com
+        install:
+          bootloader: true
+        network:
+          extraHostEntries:
+            - ip: "${IP_ENDPOINT}"
+              aliases:
+                - "k.${DNS_CLUSTER}"
+    - &clusterPatch |-
+      cluster:
+        proxy:
+          disabled: true
+    # - *kubeletExtraArgs
+    # - *machinePatch
+    # - *clusterPatch

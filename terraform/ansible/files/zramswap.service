@@ -1,8 +1,0 @@
-[Unit]
-Description=Enable ZRAM
-
-[Service]
-ExecStart=/bin/bash /usr/sbin/zramswap.sh
-
-[Install]
-WantedBy=multi-user.target
