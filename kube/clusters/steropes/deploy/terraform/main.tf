@@ -49,7 +49,7 @@ resource "proxmox_virtual_environment_vm" "k3s" {
     datastore_id = "local-lvm"
     interface    = "scsi0"
     file_format  = "raw"
-    size         = 50
+    size         = 100
     iothread     = "true"
     ssd          = "true"
     cache        = "writeback"
@@ -62,9 +62,9 @@ resource "proxmox_virtual_environment_vm" "k3s" {
     interface = "ide0"
   }
 
-  disk { # AKA speed-data: a LVM volume of 100Go from pve local-lvm, who is made by a NVME SSD. For storing small data volumes and for fast IO
+  disk {
     datastore_id      = ""
-    path_in_datastore = "/dev/pve/cp1-steropes-data-production"
+    path_in_datastore = "/dev/disk/by-id/nvme-NE-256_979032100018"
     interface         = "scsi1"
     file_format       = "raw"
     iothread          = "true"
@@ -73,10 +73,22 @@ resource "proxmox_virtual_environment_vm" "k3s" {
     discard           = "on"
   }
 
-  disk { # AKA big-data: a single sata 4To disk for storing large data volumes on K8S
+  disk {
+    datastore_id      = ""
+    path_in_datastore = "/dev/disk/by-id/ata-PNY_CS900_240GB_SSD_PNY4519191104050689E"
+    interface         = "scsi2"
+    file_format       = "raw"
+    iothread          = "true"
+    ssd               = "true"
+    cache             = "writeback"
+    discard           = "on"
+  }
+
+
+  disk { # AKA big-data: a single sata 4To disk, low IO, no replicated/backup used for monitoring and multimedia
     datastore_id      = ""
     path_in_datastore = "/dev/disk/by-id/ata-ST4000DM004-2CV104_ZFN4EQ27"
-    interface         = "scsi2"
+    interface         = "scsi3"
     file_format       = "raw"
     iothread          = "true"
     cache             = "writeback"

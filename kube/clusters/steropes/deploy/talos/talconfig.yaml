@@ -31,10 +31,6 @@ nodes:
       rack: placard
       zone: fr-home-1
     disableSearchDomain: true
-    # machineDisks:
-    #   - device: /dev/disk/by-id/scsi-0QEMU_QEMU_HARDDISK_drive-scsi1
-    #     partitions:
-    #       - mountpoint: /mnt/big-data
     nameservers: ["${IP_GATEWAY}"]
     networkInterfaces:
       - interface: eth0
