@@ -20,8 +20,8 @@ spec:
         namespace: flux-system
   values:
     kubeProxyReplacement: true
-    k8sServiceHost: ${K3S_IP}
-    k8sServicePort: ${K3S_PORT}
+    k8sServiceHost: localhost
+    k8sServicePort: 7445
     securityContext: # required for Talos
       capabilities:
         ciliumAgent:

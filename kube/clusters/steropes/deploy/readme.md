@@ -20,8 +20,8 @@ helm install cilium cilium/cilium \
         --namespace kube-system \
         --set ipam.mode=cluster-pool \
         --set kubeProxyReplacement=true \
-        --set k8sServiceHost={{ K8S_API_ENDPOINT }} \
-        --set k8sServicePort=6443 \
+        --set k8sServiceHost=localhost \
+        --set k8sServicePort=7445 \
         --set hubble.relay.enabled=true \
         --set hubble.ui.enabled=true \
         --set hubble.peerService.clusterDomain=cluster \

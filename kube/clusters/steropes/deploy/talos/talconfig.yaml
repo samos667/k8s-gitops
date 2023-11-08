@@ -44,6 +44,10 @@ controlPlane:
           feature-gates: GracefulNodeShutdown=true
     - &machinePatch |-
       machine:
+        features:
+          kubePrism:
+            enabled: true
+            port: 7445
         time:
           servers:
             - time.cloudflare.com
