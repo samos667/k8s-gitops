@@ -4,6 +4,7 @@ metadata:
   name: &app "kyverno"
   namespace: *app
 spec:
+  interval: 1h
   chart:
     spec:
       chart: *app
