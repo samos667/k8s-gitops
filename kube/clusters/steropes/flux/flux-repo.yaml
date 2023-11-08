@@ -131,7 +131,7 @@ spec:
         spec:
           postBuild:
             substituteFrom:
-              - kind: Secret
+              - kind: ConfigMap
                 name: steropes-vars
                 optional: false
               - kind: Secret
