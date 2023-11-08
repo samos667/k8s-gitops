@@ -9,6 +9,7 @@ talosctl -e k.steropes.home.lab -n cp1.steropes.home.lab --talosconfig=./cluster
 talosctl -e k.steropes.home.lab -n cp1.steropes.home.lab --talosconfig=./clusterconfig/talosconfig kubeconfig
 ```
 
+**TODO** (Need to AIO all these steps)
 After that deploy CNI **{{ REPLACE_THIS }}**
 
 ```
@@ -35,4 +36,16 @@ helm install cilium cilium/cilium \
         --set=securityContext.capabilities.cleanCiliumState="{NET_ADMIN,SYS_ADMIN,SYS_RESOURCE}" \
         --set=cgroup.autoMount.enabled=false \
         --set=cgroup.hostRoot='/sys/fs/cgroup'
+```
+
+Deploy Flux
+
+```
+cd ../../../../
+k apply -k bootstrap/flux/
+sops -d clusters/steropes/flux/secrets-ssh.sops.yaml | k create -f -
+sops -d clusters/steropes/flux/secrets-age.sops.yaml | k create -f -
+k create -f clusters/steropes/flux/flux-install.yaml
+k create -f clusters/steropes/flux/flux-repo.yaml
+
 ```
