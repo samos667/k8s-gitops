@@ -38,7 +38,7 @@ spec:
   decryption:
     provider: sops
     secretRef:
-      name: sops-age
+      name: steropes-secrets-decrypt-sops-age
   postBuild:
     substitute: {}
     substituteFrom:
