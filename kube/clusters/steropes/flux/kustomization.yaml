@@ -11,3 +11,4 @@ resources:
   - ../../../deploy/core/_networking/cilium/
   - ../../../deploy/core/kyverno/_deps/
   - ../../../deploy/core/kyverno/
+  - ../../../deploy/core/tls/cert-manager/
