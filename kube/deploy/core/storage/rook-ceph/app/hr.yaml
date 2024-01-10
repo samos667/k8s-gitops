@@ -1,0 +1,44 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: rook-ceph
+  namespace: rook-ceph
+spec:
+  interval: 1h
+  install:
+    disableWait: true
+    remediation:
+      retries: 100
+  upgrade:
+    remediation:
+      retries: 100
+  chart:
+    spec:
+      chart: rook-ceph
+      version: "v1.12.7"
+      sourceRef:
+        kind: HelmRepository
+        name: rook-ceph
+        namespace: flux-system
+  values:
+    csi:
+      # -- Enable Ceph CSI RBD driver
+      enableRbdDriver: true
+      # -- Enable Ceph CSI CephFS driver
+      enableCephfsDriver: true
+      # -- Enable host networking for CSI CephFS and RBD nodeplugins. This may be necessary
+      # in some network configurations where the SDN does not provide access to an external cluster or
+      # there is significant drop in read/write performance
+      enableCSIHostNetwork: true
+      # -- Enable Snapshotter in CephFS provisioner pod
+      enableCephfsSnapshotter: true
+      # -- Enable Snapshotter in NFS provisioner pod
+      enableNFSSnapshotter: true
+      # -- Enable Snapshotter in RBD provisioner pod
+      enableRBDSnapshotter: true
+    resources:
+      requests:
+        cpu: 100m
+        memory: 128Mi
+      limits:
+        memory: 256Mi

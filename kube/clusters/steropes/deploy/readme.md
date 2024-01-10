@@ -24,7 +24,6 @@ helm install cilium cilium/cilium \
         --set k8sServicePort=7445 \
         --set hubble.relay.enabled=true \
         --set hubble.ui.enabled=true \
-        --set hubble.peerService.clusterDomain=cluster \
         --set operator.replicas=1 \
         --set localRedirectPolicy=true \
         --set bpf.masquerade=true \
