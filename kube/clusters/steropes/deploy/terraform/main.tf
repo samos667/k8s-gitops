@@ -2,7 +2,7 @@ terraform {
   required_providers {
     proxmox = {
       source  = "bpg/proxmox"
-      version = "0.37.0"
+      version = "0.43.1"
     }
   }
 }
@@ -24,7 +24,7 @@ provider "proxmox" {
 resource "proxmox_virtual_environment_vm" "k3s" {
   name        = "cp1.steropes"
   description = "Steropes K8S cluster"
-  tags        = ["terraform", "k8s", "steropes", "prod", "cp"]
+  tags        = ["terraform", "k8s", "steropes", "prod", "cp", "nixos"]
   node_name   = "pve"
   vm_id       = 696
 
@@ -56,9 +56,9 @@ resource "proxmox_virtual_environment_vm" "k3s" {
     discard      = "on"
   }
 
-  cdrom { # Talos ISO
+  cdrom { # Nixos ISO
     enabled   = "true"
-    file_id   = proxmox_virtual_environment_file.talos-image.id
+    file_id   = proxmox_virtual_environment_download_file.nixos_image.id
     interface = "ide0"
   }
 

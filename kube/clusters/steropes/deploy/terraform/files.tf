@@ -1,11 +1,9 @@
-resource "proxmox_virtual_environment_file" "talos-image" {
-  content_type = "iso"
-  datastore_id = "local"
-  node_name    = "pve"
-
-  source_file {
-    path      = "https://github.com/siderolabs/talos/releases/download/v1.5.4/metal-amd64.iso"
-    file_name = "talos-amd64.iso"
-    checksum  = "9bdbd2ecd35fe94298d017bc137540a439ab3ca4c077e24712632aef2d202bf7"
-  }
+resource "proxmox_virtual_environment_download_file" "nixos_image" {
+  content_type       = "iso"
+  datastore_id       = "local"
+  file_name          = "nixos-latest.iso"
+  node_name          = "pve"
+  url                = "https://channels.nixos.org/nixos-23.11/latest-nixos-minimal-x86_64-linux.iso"
+  checksum           = "6644ee3ec26909814bcdb82857188dc492eecb3c97435c9d895c2d1cb02b274d"
+  checksum_algorithm = "sha256"
 }
